@@ -1,1240 +1,1475 @@
-<!DOCTYPE html>
-<html lang="pl" class="dark">
+<!doctype html>
+<!-- tasteskill 2.5.1 (design-taste-frontend) build
+     type: software | site-kind: software
+     deal: palette candy-on-black, type schibsted (Schibsted Grotesk + JetBrains Mono), hero split-app-frame, nav nav-mega, close close-word, footer footer-dark, rhythm surface-pairs, buttons solid, mark ring, radius sharp
+     moments: iris-opens (#architecture), word-highlight (#statement) -->
+<html lang="pl" data-type="software" data-radius="sharp" data-ground="sand" data-buttons="solid" data-motion>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alexander Salamon (xvyz) — Systems, AI & Hardware Engineering</title>
-  <meta name="description" content="Portfolio inżynieryjne Alexandra Salamona (xvyz / pankrasnal4-dot) — Full-Stack, iOS, Lokalna AI (Qwen/Antigravity), ESP32 Hardware & ZimaOS Infrastructure." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alexander Salamon (xvyz): Systemy AI, aplikacje iOS i sprzęt embedded</title>
+  <meta name="description" content="Inżynieria oprogramowania full-stack oraz iOS (Swift), lokalne agenty AI (Qwen 3.5 i Antigravity CLI), mikrokontrolery ESP32-2432S028R i własny klaster ZimaOS w Łodzi.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alexander Salamon (xvyz): Systemy AI, aplikacje iOS i sprzęt embedded">
+  <meta property="og:description" content="Aplikacje full-stack i Swift, lokalne potoki LLM, urządzenia ESP32 CYD z ogniwami LiPo oraz prywatna infrastruktura serwerowa ZimaOS.">
+  <meta property="og:image" content="favicon.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#000000">
+  <meta name="site-kind" content="software">
+  <meta name="page-type" content="software">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+
   <style>
     :root {
-      --bg-base: #050507;
-      --bg-surface: #0b0c10;
-      --bg-elevated: #11131a;
-      --bg-glass: rgba(14, 16, 22, 0.72);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.22);
-      --text-primary: #f5f5f7;
-      --text-secondary: #9499ad;
-      --text-muted: #5e6378;
-      --accent-blue: #3b82f6;
-      --accent-cyan: #06b6d4;
-      --accent-emerald: #10b981;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --p-bg: #000000;
+      --p-surface: #0d0d0d;
+      --p-card: #151517;
+      --p-ink: #ffffff;
+      --p-muted: #999999;
+      --p-hairline: rgba(255, 255, 255, 0.10);
+      --p-hairline-strong: rgba(255, 255, 255, 0.22);
+      --p-top-shine: rgba(255, 255, 255, 0.06);
+      --p-accent: #93f1f7;
+      --p-accent-ink: #000000;
+      --p-action: #93f1f7;
+      --p-action-ink: #000000;
+      --p-inv-bg: #9ae187;
+      --p-inv-surface: #8bcc7a;
+      --p-inv-ink: #000000;
+      --p-inv-muted: #24391e;
+      --font-display: "Schibsted Grotesk", system-ui, -apple-system, sans-serif;
+      --font-text: "Schibsted Grotesk", system-ui, -apple-system, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --display-weight: 400;
+      --display-tracking: -0.035em;
+      --display-tracking-xl: -0.042em;
+      --ly-scale: 0.98;
+      --nav: 72px;
+      --padt: 120px;
+      --padb: 72px;
+      --gut: 80px;
+      --hgap: 48px;
+      --hpadb: 64px;
+      --s-1: 4px;
+      --s-2: 8px;
+      --s-3: 12px;
+      --s-4: 16px;
+      --s-5: 24px;
+      --s-6: 32px;
+      --s-7: 48px;
+      --s-8: 64px;
+      --s-9: 96px;
+      --s-10: 128px;
+    }
+
+    @media (max-width: 1023px) {
+      :root {
+        --gut: 40px;
+        --padt: 96px;
+        --padb: 56px;
+      }
+    }
+
+    @media (max-width: 639px) {
+      :root {
+        --nav: 56px;
+        --padt: 88px;
+        --padb: 48px;
+        --gut: 24px;
+        --hgap: 32px;
+        --hpadb: 32px;
+      }
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html {
-      scroll-behavior: smooth;
-      background-color: var(--bg-base);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
+      scroll-padding-top: 0;
+      scroll-behavior: auto;
+      background: var(--p-bg);
+      color: var(--p-ink);
+      font-family: var(--font-text);
       -webkit-font-smoothing: antialiased;
+      hyphens: auto;
     }
-
     body {
-      background-color: var(--bg-base);
-      background-image:
-        radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.09), transparent 35%),
-        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.06), transparent 35%),
-        linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
-      min-height: 100vh;
+      margin: 0;
+      background: var(--p-bg);
+      color: var(--p-ink);
       overflow-x: hidden;
-      line-height: 1.6;
     }
-
     a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
-    .nav-wrapper {
-      position: fixed;
-      top: 18px;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      padding: 0 20px;
+    /* Hero Entrance (House Rule 5) */
+    @keyframes heroEnter {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    [data-enter] .hero-copy > * {
+      animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    [data-enter] .hero-copy > *:nth-child(2) { animation-delay: 0.08s; }
+
+    /* Equal Left & Right Content Edges (House Rule 4) */
+    .wrap {
+      width: 100%;
+      max-width: calc(1280px + 2 * var(--gut));
+      padding-left: var(--gut);
+      padding-right: var(--gut);
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    nav {
-      width: 100%;
-      max-width: 1160px;
-      background: var(--bg-glass);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--border-subtle);
-      border-radius: 999px;
-      padding: 10px 20px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--s-5);
+      row-gap: var(--s-5);
+    }
+    .span-2 { grid-column: span 2; }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .start-7 { grid-column-start: 7; }
+    .start-8 { grid-column-start: 8; }
+
+    @media (max-width: 900px) {
+      .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .start-7, .start-8 {
+        grid-column: span 12;
+      }
+    }
+
+    /* Skip Link (system.md) */
+    .skip-link {
+      position: fixed;
+      top: 14px;
+      left: var(--gut);
+      z-index: 300;
+      background: var(--p-action);
+      color: var(--p-action-ink);
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      transform: translateY(-200%);
+      transition: transform 0.16s ease;
+    }
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 2px solid var(--p-ink);
+      outline-offset: 2px;
+    }
+
+    /* Fixed Opaque Header (system.md) */
+    header.nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav);
+      background: var(--p-bg);
+      border-bottom: 1px solid var(--p-hairline);
+      z-index: 150;
+    }
+    .nav__bar {
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+      gap: var(--s-5);
     }
-
-    .brand {
-      display: flex;
+    .nav__logo {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      min-height: 44px;
     }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
+    .mark {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--p-accent);
       border-radius: 50%;
-      background: var(--accent-emerald);
-      box-shadow: 0 0 12px var(--accent-emerald);
-      animation: pulse 2.4s infinite ease-in-out;
+      display: inline-block;
+      position: relative;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(0.88); }
+    .mark::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      background: var(--p-accent);
+      border-radius: 50%;
     }
-
-    .nav-links {
+    .nav__links {
       display: flex;
       align-items: center;
-      gap: 24px;
-      font-size: 0.86rem;
-      color: var(--text-secondary);
+      gap: 28px;
+    }
+    .nav__link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      font-size: 14px;
+      color: var(--p-muted);
+      transition: color 0.18s ease;
+    }
+    .nav__link::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 10px;
+      height: 1px;
+      background: var(--p-ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav__link:hover, .nav__link:focus-visible { color: var(--p-ink); }
+    .nav__link:hover::after, .nav__link:focus-visible::after { transform: scaleX(1); }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .nav-links a { transition: color 0.2s ease; }
-    .nav-links a:hover { color: var(--text-primary); }
+    @media (max-width: 820px) {
+      .nav__links { display: none; }
+    }
 
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    /* Buttons (House Rule 5: step on hover, press on click, 44px tap target) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 0 20px;
+      font-family: var(--font-text);
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.16s ease, border-color 0.16s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(1px); }
+    .btn--primary {
+      background: var(--p-action);
+      color: var(--p-action-ink);
+    }
+    .btn--secondary {
+      background: var(--p-surface);
+      color: var(--p-ink);
+      border-color: var(--p-hairline);
+    }
+    .btn--secondary:hover {
+      border-color: var(--p-hairline-strong);
+      background: #141416;
+    }
+    .btn--xl {
+      min-height: 56px;
+      padding: 0 28px;
+      font-size: 16px;
+    }
+    .m-arrow {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      fill: none;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn:hover .m-arrow { transform: translateX(3px); }
 
-    .btn-pill {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
+    /* One Section Per Screen (House Rule 3 & layout-v4.md) */
+    main > section, footer.closing {
+      min-height: calc(var(--h, 1) * 100vh);
+      padding-top: var(--padt);
+      padding-bottom: var(--padb);
+      border-bottom: 1px solid var(--p-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    section.g2 { --h: 2; }
+
+    /* Hero Split (Screen 1 = 100vh) */
+    .hero {
+      padding-bottom: var(--hpadb);
+    }
+    .hero-split {
+      min-height: calc(100vh - var(--padt) - var(--hpadb));
+      align-items: stretch;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-notice {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 6px 12px;
-      border-radius: 999px;
-      cursor: pointer;
+      font-size: 12px;
+      color: var(--p-accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: var(--s-4);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-weight: var(--display-weight);
+      font-size: clamp(36px, 4.1vw, 58px);
+      line-height: 1.03;
+      letter-spacing: var(--display-tracking-xl);
+      margin-bottom: var(--s-5);
+    }
+    .t-lead {
+      font-size: clamp(16px, 1.3vw, 19px);
+      line-height: 1.5;
+      color: var(--p-muted);
+      max-width: 52ch;
+      margin-bottom: var(--s-6);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: var(--s-6);
+    }
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-4);
+      padding-top: var(--s-5);
+      border-top: 1px solid var(--p-hairline);
+    }
+    .hero-facts dt {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--p-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .hero-facts dd {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    /* Section Headings */
+    .section-head {
+      margin-bottom: var(--s-7);
+    }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-weight: var(--display-weight);
+      font-size: clamp(28px, 2.9vw, 42px);
+      line-height: 1.08;
+      letter-spacing: var(--display-tracking);
+      max-width: 38ch;
+    }
+    .muted { color: var(--p-muted); }
+
+    /* x.ai & Figma Lit Panels + Open Feature Cards (cards.md) */
+    .card--open {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--s-4);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    a.card--open:hover {
+      transform: translateY(-2px);
+    }
+    .card--open h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .card--open p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--p-muted);
+      max-width: 54ch;
+    }
+
+    .panel {
+      position: relative;
+      height: var(--p-h, 320px);
+      overflow: hidden;
+      border: 1px solid var(--p-hairline);
+      box-shadow: inset 0 1px 0 var(--p-top-shine);
+      background: #141a1d;
+    }
+    .panel--hero {
+      height: 100%;
+      min-height: 500px;
+    }
+    .panel__canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+    .stage--fade-b {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 28px 28px 0 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* Pause Disc for Looping UI (House Rule 5) */
+    .loop-pause {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(8, 9, 11, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--p-ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .loop-pause:hover {
+      border-color: var(--p-accent);
+      transform: scale(1.05);
+    }
+
+    /* True-Size Product UI inside Panel (.app-frame) */
+    .app-frame {
+      background: #08090b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: none;
+      box-shadow: 0 -16px 44px rgba(0, 0, 0, 0.72);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #e6e9ef;
+      width: 100%;
+    }
+    .app-frame__bar {
+      height: 36px;
+      padding: 0 14px;
+      background: #0d0f13;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--p-muted);
+    }
+    .app-frame__body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ui-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .ui-row--add {
+      background: rgba(154, 225, 135, 0.11);
+      border-color: rgba(154, 225, 135, 0.25);
+      color: #c2f5b4;
+    }
+    .ui-row--accent {
+      background: rgba(147, 241, 247, 0.10);
+      border-color: rgba(147, 241, 247, 0.26);
+      color: var(--p-accent);
+    }
+    .ui-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--p-ink);
+    }
+
+    /* Real Brand Icons Pill Strip (House Rule 7) */
+    .icon-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .ic-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-pill:hover {
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.09);
-    }
-
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-
-    .hero { padding: 150px 0 70px; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      padding: 4px 9px;
+      background: #0d0f13;
+      border: 1px solid var(--p-hairline);
       font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--accent-blue);
-      background: rgba(59, 130, 246, 0.08);
-      border: 1px solid rgba(59, 130, 246, 0.22);
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--p-ink);
+    }
+    .ic-pill svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
     }
 
-    .hero h1 {
-      font-size: clamp(2.4rem, 5.2vw, 4.3rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      max-width: 920px;
-      margin-bottom: 22px;
-      background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 55%, #64748b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Dealt Moment 1: Iris-Opens Section (#architecture) */
+    .iris-panel {
+      position: relative;
+      background: var(--p-surface);
+      border: 1px solid var(--p-hairline);
+      padding: var(--s-7);
+      overflow: hidden;
     }
-
-    .hero p.lead {
-      font-size: clamp(1.02rem, 1.8vw, 1.22rem);
-      color: var(--text-secondary);
-      max-width: 740px;
-      margin-bottom: 34px;
-      font-weight: 400;
+    .iris-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--iris-size, 900px);
+      height: var(--iris-size, 900px);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(147, 241, 247, 0.28);
+      pointer-events: none;
+      transition: width 0.35s ease, height 0.35s ease;
     }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 64px;
+    .spec-table {
+      list-style: none;
+      border-top: 1px solid var(--p-hairline);
     }
-
-    .btn-primary {
-      background: var(--text-primary);
-      color: var(--bg-base);
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 12px 24px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.18s ease, opacity 0.18s ease;
-    }
-
-    .btn-primary:hover { transform: translateY(-2px); opacity: 0.92; }
-
-    .btn-secondary {
-      background: var(--bg-surface);
-      color: var(--text-primary);
-      border: 1px solid var(--border-subtle);
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 12px 22px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-elevated);
-      transform: translateY(-2px);
-    }
-
-    .telemetry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .metric-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .metric-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .metric-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
+    .spec-table li {
       display: flex;
       justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--p-hairline);
+      font-size: 14px;
+    }
+    .spec-table .k {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--p-muted);
+      text-transform: uppercase;
+    }
+    .spec-table .v {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--p-ink);
+      text-align: right;
+    }
+
+    /* Interactive Peek-List Section (#repositories) */
+    .rows {
+      list-style: none;
+      border-top: 1px solid var(--p-hairline);
+    }
+    .rows li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--p-hairline);
+      cursor: pointer;
+      transition: padding-left 0.16s ease, color 0.16s ease;
+    }
+    .rows li:hover, .rows li:focus-visible, .rows li.is-active {
+      padding-left: 10px;
+      color: var(--p-accent);
+      outline: none;
+    }
+    .rows__name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      display: inline-flex;
       align-items: center;
+      gap: 8px;
+    }
+    .rows li.is-active .rows__name::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--p-accent);
+    }
+    .rows li p {
+      grid-column: 1 / -1;
+      font-size: 13.5px;
+      color: var(--p-muted);
+    }
+    .rows__value {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--p-muted);
     }
 
-    .metric-value {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
+    /* Dealt Moment 2: Word-Highlight Statement (#statement) */
+    .statement-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100vh - var(--padt) - var(--padb));
     }
+    .statement-copy {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.8vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      max-width: 27ch;
+      margin-bottom: var(--s-7);
+    }
+    .statement-copy .w {
+      color: rgba(255, 255, 255, 0.25);
+      transition: color 0.22s ease;
+    }
+    .statement-copy .w.is-lit { color: var(--p-ink); }
+    .statement-copy .w.is-acc { color: var(--p-accent); }
 
-    .metric-sub { font-size: 0.82rem; color: var(--text-secondary); }
-
-    section { padding: 72px 0; border-top: 1px solid var(--border-subtle); }
-
-    .section-header {
+    /* Footer Closing (close--word) */
+    .section-head--split {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 20px;
-      margin-bottom: 36px;
+      gap: var(--s-5);
     }
-
-    .section-tag {
+    .close__word {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 13.5vw, 196px);
+      line-height: 0.84;
+      letter-spacing: -0.055em;
+      color: rgba(255, 255, 255, 0.08);
+      user-select: none;
+      margin: var(--s-5) 0;
+    }
+    .footer__col h3 {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-blue);
+      font-size: 12px;
+      color: var(--p-muted);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
-
-    .section-title {
-      font-size: clamp(1.65rem, 3vw, 2.25rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-    }
-
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .filter-btn {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      color: var(--text-primary);
-      border-color: var(--accent-blue);
-      background: rgba(59, 130, 246, 0.12);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
-    }
-
-    .project-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 26px;
+    .footer__col ul {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.22s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-elevated);
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-      gap: 12px;
-    }
-
-    .project-badge {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-    }
-
-    .project-title {
-      font-size: 1.22rem;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
       gap: 8px;
     }
-
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 22px;
-    }
-
-    .project-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-subtle);
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .tech-tag {
-      font-family: var(--font-mono);
-      font-size: 0.71rem;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.03);
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-    }
-
-    .project-link {
-      color: var(--text-primary);
+    .footer__col a {
+      font-size: 14px;
+      color: var(--p-muted);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      opacity: 0.82;
-      transition: opacity 0.15s ease, color 0.15s ease;
+      min-height: 32px;
+      transition: color 0.15s ease;
     }
-
-    .project-link:hover { opacity: 1; color: var(--accent-blue); }
-
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
-
-    .bento-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      grid-column: span 6;
-    }
-
-    .bento-card.span-4 { grid-column: span 4; }
-    .bento-card.span-8 { grid-column: span 8; }
-
-    .bento-card h3 {
-      font-size: 1.18rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .bento-card p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 18px;
-    }
-
-    .spec-list { list-style: none; display: grid; gap: 10px; }
-
-    .spec-list li {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.84rem;
-      padding-bottom: 8px;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
-    }
-
-    .spec-key { color: var(--text-muted); font-family: var(--font-mono); }
-    .spec-val { color: var(--text-primary); font-family: var(--font-mono); font-weight: 500; text-align: right; }
-
-    .speed-meter {
-      margin-top: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    .speed-header {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 10px;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 999px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress-fill {
-      width: 80%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan), var(--accent-emerald));
-      border-radius: 999px;
-    }
-
-    .terminal-box {
-      background: #07080c;
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
-    }
-
-    .terminal-bar {
-      background: #0e1017;
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .window-dots { display: flex; gap: 8px; }
-    .window-dots span {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.14);
-    }
-
-    .terminal-title {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--text-muted);
-    }
-
-    .terminal-body {
-      padding: 22px;
-      font-family: var(--font-mono);
-      font-size: 0.84rem;
-      min-height: 250px;
-      max-height: 360px;
-      overflow-y: auto;
-    }
-
-    .term-line { margin-bottom: 10px; line-height: 1.55; color: var(--text-secondary); }
-    .term-cmd { color: var(--accent-emerald); }
-    .term-accent { color: var(--accent-blue); }
-
-    .terminal-input-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 22px;
-      border-top: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.015);
-    }
-
-    .terminal-prompt {
-      font-family: var(--font-mono);
-      font-size: 0.84rem;
-      color: var(--accent-blue);
-      white-space: nowrap;
-    }
-
-    .terminal-input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-primary);
-      font-family: var(--font-mono);
-      font-size: 0.84rem;
-    }
-
-    .quick-cmds {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 22px;
-      background: #0a0c12;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .cmd-chip {
-      font-family: var(--font-mono);
-      font-size: 0.73rem;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .cmd-chip:hover { color: var(--text-primary); border-color: var(--accent-blue); }
-
-    footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 42px 0;
-      margin-top: 40px;
-      color: var(--text-muted);
-      font-size: 0.84rem;
-      font-family: var(--font-mono);
-    }
-
-    .footer-inner {
+    .footer__col a:hover { color: var(--p-ink); }
+    .footer__legal {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
+      padding-top: var(--s-5);
+      border-top: 1px solid var(--p-hairline);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--p-muted);
     }
+    .footer__legal a {
+      color: var(--p-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .footer__legal a:hover { color: var(--p-ink); }
 
-    @media (max-width: 900px) {
-      .bento-card, .bento-card.span-4, .bento-card.span-8 { grid-column: span 12; }
-      .nav-links { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="nav-wrapper">
-    <nav>
-      <a href="#" class="brand">
-        <span class="status-dot"></span>
-        <span>ALEXANDER SALAMON // XVYZ</span>
-      </a>
-      <div class="nav-links">
-        <a href="#projects" data-i18n="nav_projects">Projekty</a>
-        <a href="#architecture" data-i18n="nav_arch">Infrastruktura & Hardware</a>
-        <a href="#telemetry" data-i18n="nav_telemetry">Telemetria</a>
-        <a href="#terminal">Terminal CLI</a>
-      </div>
-      <div class="nav-actions">
-        <button class="btn-pill" id="langToggle" title="Switch language">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-          </svg>
-          <span id="langLabel">PL / EN</span>
-        </button>
-        <a href="https://github.com/pankrasnal4-dot" target="_blank" rel="noopener" class="btn-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-          <span>GitHub</span>
-        </a>
-      </div>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top" data-i18n="skip">Przejdź do treści</a>
+    <a class="nav__logo" href="#top">
+      <span class="mark" data-mark="ring" aria-hidden="true"></span>
+      <span>Alexander Salamon</span>
+    </a>
+    <nav class="nav__links" aria-label="Główna nawigacja">
+      <a class="nav__link" href="#features" data-i18n="nav_sys">Systemy i UI</a>
+      <a class="nav__link" href="#architecture" data-i18n="nav_lab">Infrastruktura i Hardware</a>
+      <a class="nav__link" href="#repositories" data-i18n="nav_repos">Repozytoria</a>
+      <a class="nav__link" href="#statement" data-i18n="nav_telemetry">Telemetria</a>
+      <a class="nav__link" href="#contact" data-i18n="nav_contact">Kontakt</a>
     </nav>
-  </div>
-
-  <main class="container">
-    <header class="hero">
-      <div class="eyebrow">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="4 17 10 11 4 5"></polyline>
-          <line x1="12" y1="19" x2="20" y2="19"></line>
-        </svg>
-        <span>51.7592° N, 19.4560° E · ŁÓDŹ, POLAND · @PANKRASNAL4-DOT</span>
-      </div>
-
-      <h1 data-i18n="hero_title">Inżynieria oprogramowania, lokalne systemy AI i architektura sprzętowa.</h1>
-
-      <p class="lead" data-i18n="hero_lead">
-        Projektuję i wdrażam minimalistyczne aplikacje iOS oraz full-stack, autonomiczne agenty AI (Qwen / Antigravity), niestandardowe urządzenia wbudowane na bazie ESP32 oraz własną infrastrukturę serwerową ZimaOS.
-      </p>
-
-      <div class="hero-cta">
-        <a href="#projects" class="btn-primary">
-          <span data-i18n="cta_projects">Eksploruj repozytoria</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </a>
-        <a href="#terminal" class="btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-            <path d="m6 8 4 4-4 4"></path>
-            <path d="M12 16h6"></path>
-          </svg>
-          <span data-i18n="cta_terminal">Uruchom konsolę JARVIS</span>
-        </a>
-      </div>
-
-      <div class="telemetry-grid">
-        <div class="metric-card">
-          <div class="metric-label">
-            <span>01 // LOCAL AI WORKFLOW</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"></path></svg>
-          </div>
-          <div class="metric-value">Antigravity + Qwen</div>
-          <div class="metric-sub" data-i18n="m1_sub">Lokalne agenty LLM, RAG & Obsidian Second Brain</div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-label">
-            <span>02 // SELF-HOSTED LAB</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-          </div>
-          <div class="metric-value">ZimaOS · Tailscale</div>
-          <div class="metric-sub" data-i18n="m2_sub">HP Thin Client t630, Wake-on-LAN, 1TB CMR SATA</div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-label">
-            <span>03 // EMBEDDED HARDWARE</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path></svg>
-          </div>
-          <div class="metric-value">ESP32-2432S028R</div>
-          <div class="metric-sub" data-i18n="m3_sub">Custom firmware w C, ekrany dotykowe CYD & zasilanie LiPo</div>
-        </div>
-
-        <div class="metric-card">
-          <div class="metric-label">
-            <span>04 // ALPINE VMAX RECORD</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <div class="metric-value">112 km/h → 140 km/h</div>
-          <div class="metric-sub" data-i18n="m4_sub">Kasprowy Wierch (2025/26) · Cel na kolejny sezon</div>
-        </div>
-      </div>
-    </header>
-
-    <section id="projects">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">01 // REPOZYTORIA & SYSTEMY</div>
-          <h2 class="section-title" data-i18n="sec_projects_title">Wybrane projekty inżynieryjne</h2>
-        </div>
-        <div class="filter-bar">
-          <button class="filter-btn active" data-filter="all" data-i18n="f_all">Wszystkie (8)</button>
-          <button class="filter-btn" data-filter="software">Full-Stack & iOS</button>
-          <button class="filter-btn" data-filter="ai">AI & Automatyzacja</button>
-          <button class="filter-btn" data-filter="hardware">Hardware & Embedded</button>
-        </div>
-      </div>
-
-      <div class="projects-grid" id="projectsGrid">
-        <article class="project-card" data-category="software">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">ACTIVE FLAGSHIP</span>
-              <span class="project-badge">2026</span>
-            </div>
-            <h3 class="project-title">Gymmie</h3>
-            <p class="project-desc" data-i18n="p_gymmie_desc">
-              Minimalistyczna, wieloplatformowa aplikacja treningowa (mobile & web) z bezhasłową weryfikacją e-mail, automatycznymi kopiami zapasowymi w chmurze i śledzeniem progresji siłowej.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">Cloud Sync</span>
-              <span class="tech-tag">Passwordless Auth</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/gymmiee" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="ai">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">AI INFRASTRUCTURE</span>
-              <span class="project-badge">ZimaOS</span>
-            </div>
-            <h3 class="project-title">NEXUS AI & JarvisLocalAi</h3>
-            <p class="project-desc" data-i18n="p_nexus_desc">
-              Neural Executive & Knowledge Unified System na serwerze ZimaOS. Integracja z Obsidian Second Brain (grafy MOC), potok RAG, synteza mowy TTS, silnik Skill Mastery oraz automatyzacja Google Workspace.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">RAG / LLM</span>
-              <span class="tech-tag">Obsidian MOC</span>
-              <span class="tech-tag">ZimaOS</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/nexus-ai-school-bot" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="hardware">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">EMBEDDED & PCB</span>
-              <span class="project-badge">GPL-3.0</span>
-            </div>
-            <h3 class="project-title">Smart Deck Studio Pro & CYD</h3>
-            <p class="project-desc" data-i18n="p_smartdeck_desc">
-              Konfigurowalny Macro Deck dla systemu Windows oraz dedykowany firmware na mikrokontrolery ESP32-2432S028R (CYD) i JC8048, połączony z budową mobilnego kalkulatora zasilanego ogniwem LiPo 3000 mAh (605080).
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">C / ESP32</span>
-              <span class="tech-tag">CYD 2.8"</span>
-              <span class="tech-tag">LiPo 3000mAh</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/smartdeck" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="software">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">NATIVE iOS</span>
-              <span class="project-badge">Swift</span>
-            </div>
-            <h3 class="project-title">Synthesis RPG iOS</h3>
-            <p class="project-desc" data-i18n="p_synthesis_desc">
-              Natywna aplikacja mobilna na platformę iOS napisana w języku Swift. Zaprojektowana zgodnie z estetyką Apple Dark Mode, wykorzystująca wektorową ikonografię SF Symbols oraz responsywną architekturę stanu.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">Swift</span>
-              <span class="tech-tag">SwiftUI</span>
-              <span class="tech-tag">iOS 18+</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/synthesis-rpg-ios" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="software">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">DESKTOP APP</span>
-              <span class="project-badge">MIT</span>
-            </div>
-            <h3 class="project-title">Turnofi</h3>
-            <p class="project-desc" data-i18n="p_turnofi_desc">
-              Taktyczny timer wyłączania systemu i towarzysz pulpitu dla Windows. 5 dynamicznych motywów, generowane proceduralnie dźwięki, system grywalizacji oraz wbudowany moduł Auto-Updatera.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Electron</span>
-              <span class="tech-tag">React</span>
-              <span class="tech-tag">Framer Motion</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/turnofi" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="software">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">COMMERCIAL DEPLOY</span>
-              <span class="project-badge">Live on Render</span>
-            </div>
-            <h3 class="project-title">CzystoTruck Platform</h3>
-            <p class="project-desc" data-i18n="p_czystotruck_desc">
-              Platforma webowa w stylistyce Dark Luxury zintegrowana z automatycznym botem zgłoszeniowym na Telegramie, zoptymalizowana pod kątem konwersji dla firmy usługowej w Łodzi.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">HTML5 / CSS3</span>
-              <span class="tech-tag">Telegram Bot API</span>
-              <span class="tech-tag">Render</span>
-            </div>
-            <div class="project-links">
-              <a href="https://czystotruck-website.onrender.com" target="_blank" rel="noopener" class="project-link">
-                <span>Live</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-              <a href="https://github.com/pankrasnal4-dot/czystotruck-website" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="software">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">WEB APPLICATION</span>
-              <span class="project-badge">TypeScript</span>
-            </div>
-            <h3 class="project-title">Sleepio</h3>
-            <p class="project-desc" data-i18n="p_sleepio_desc">
-              Minimalistyczna aplikacja webowa zaprojektowana w TypeScript, wspierająca planowanie cykli snu, optymalizację regeneracji i higienę rytmu dobowego.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Minimal UI</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/sleepio" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="ai">
-          <div>
-            <div class="project-top">
-              <span class="project-badge">AI & iOS MODS</span>
-              <span class="project-badge">Open Source</span>
-            </div>
-            <h3 class="project-title">Buddy AI & spoti.pw</h3>
-            <p class="project-desc" data-i18n="p_buddy_desc">
-              Eksperymentalne repozytoria obejmujące lekkiego asystenta AI w języku Python (Buddy AI) oraz eksplorację powłoki Liquid Glass UI dla aplikacji iOS bez konieczności jailbreaku.
-            </p>
-          </div>
-          <div class="project-footer">
-            <div class="tech-tags">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">iOS Sideloading</span>
-              <span class="tech-tag">Liquid Glass</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/pankrasnal4-dot/spoti.pw" target="_blank" rel="noopener" class="project-link">
-                <span>Repo</span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="architecture">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">02 // HARDWARE & SELF-HOSTING</div>
-          <h2 class="section-title" data-i18n="sec_arch_title">Architektura systemowa i laboratorium sprzętowe</h2>
-        </div>
-      </div>
-
-      <div class="bento-grid">
-        <div class="bento-card">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            <span data-i18n="b1_title">Węzeł Serwerowy Home Lab</span>
-          </h3>
-          <p data-i18n="b1_desc">
-            Prywatna chmura obliczeniowa i serwer usług działający 24/7, zoptymalizowany pod kątem niskiego poboru mocy, zdalnego wybudzania oraz szyfrowanej komunikacji w sieci mesh.
-          </p>
-          <ul class="spec-list">
-            <li><span class="spec-key">HOST HARDWARE</span><span class="spec-val">HP Thin Client t630</span></li>
-            <li><span class="spec-key">OPERATING SYSTEM</span><span class="spec-val">ZimaOS / CasaOS</span></li>
-            <li><span class="spec-key">STORAGE ARRAY</span><span class="spec-val">2.5" 1TB CMR SATA + NVMe</span></li>
-            <li><span class="spec-key">NETWORKING</span><span class="spec-val">Tailscale Mesh VPN + Wake-on-LAN</span></li>
-          </ul>
-        </div>
-
-        <div class="bento-card">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
-            <span data-i18n="b2_title">Warsztat Embedded & Hardware Modding</span>
-          </h3>
-          <p data-i18n="b2_desc">
-            Projektowanie przenośnych urządzeń mikrokontrolerowych, integracja ogniw litowo-polimerowych oraz modyfikacje sprzętowe elektroniki użytkowej.
-          </p>
-          <ul class="spec-list">
-            <li><span class="spec-key">MCU DISPLAY BOARD</span><span class="spec-val">ESP32-2432S028R (2.8" CYD)</span></li>
-            <li><span class="spec-key">POWER DELIVERY</span><span class="spec-val">3000 mAh 605080 LiPo + Micro JST</span></li>
-            <li><span class="spec-key">HARDWARE MODS</span><span class="spec-val">Casio fx-350ES PLUS (Dark Polarizer / ESP32)</span></li>
-            <li><span class="spec-key">FIRMWARE STACK</span><span class="spec-val">C / C++ / LVGL / Serial HID</span></li>
-          </ul>
-        </div>
-
-        <div class="bento-card" style="grid-column: span 12;">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            <span data-i18n="b3_title">Środowisko deweloperskie & Ekosystem AI</span>
-          </h3>
-          <p data-i18n="b3_desc">
-            Praca oparta o lokalne przepływy agentowe w katalogu roboczym, łącząca szybkie lokalne modele językowe z natywnym ekosystemem Apple i chmurą obliczeniową.
-          </p>
-          <ul class="spec-list">
-            <li><span class="spec-key">AI CODING WORKFLOW</span><span class="spec-val">Google Antigravity CLI + Local Qwen3.5 LLM</span></li>
-            <li><span class="spec-key">WORKSTATION</span><span class="spec-val">Intel Core i5 (11th Gen) · 16GB RAM · 4TB Storage</span></li>
-            <li><span class="spec-key">MOBILE & DESIGN TESTBED</span><span class="spec-val">iPhone 17 Pro · iPad Pro 12.9" (M2)</span></li>
-            <li><span class="spec-key">CORE LANGUAGES</span><span class="spec-val">TypeScript · Python · Swift · JavaScript · C · SQL</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="telemetry">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">03 // TELEMETRIA POZA EKRANEM</div>
-          <h2 class="section-title" data-i18n="sec_telemetry_title">Dyscyplina sportowa i analityka</h2>
-        </div>
-      </div>
-
-      <div class="bento-grid">
-        <div class="bento-card span-8">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
-            <span data-i18n="t1_title">Narciarstwo Alpejskie — Projekt 140 km/h</span>
-          </h3>
-          <p data-i18n="t1_desc">
-            Zjazdowe narciarstwo wysokich prędkości w Tatrach (Kasprowy Wierch, Jurgów Ski). W sezonie 2025/2026 zarejestrowany rekord prędkości wyniósł 112 km/h. Aktualny cel inżynieryjno-kondycyjny to osiągnięcie 140 km/h.
-          </p>
-          <div class="speed-meter">
-            <div class="speed-header">
-              <span>VMAX RECORD: 112 KM/H (KASPROWY WIERCH)</span>
-              <span>TARGET: 140 KM/H (80%)</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bento-card span-4">
-          <h3>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-            <span data-i18n="t2_title">Trening Siłowy & F1</span>
-          </h3>
-          <p data-i18n="t2_desc">
-            Systematyczny trening siłowy w systemie split (Well Fitness Łódź) wspierany własną aplikacją Gymmie, pasja do telemetrii Formuły 1, fotografii oraz matematyki rozszerzonej i informatyki (IX LO w Łodzi).
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="terminal">
-      <div class="section-header">
-        <div>
-          <div class="section-tag">04 // INTERACTIVE SHELL</div>
-          <h2 class="section-title" data-i18n="sec_term_title">Konsola systemowa xvyz@jarvis-node</h2>
-        </div>
-      </div>
-
-      <div class="terminal-box">
-        <div class="terminal-bar">
-          <div class="window-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <div class="terminal-title">xvyz@jarvis-node: ~/Desktop/code (Antigravity CLI v2.6)</div>
-          <div style="width: 42px;"></div>
-        </div>
-
-        <div class="terminal-body" id="termOutput">
-          <div class="term-line"><span class="term-accent">[SYSTEM]</span> Połączono z węzłem <strong>xvyz@jarvis-node</strong> (ZimaOS / Tailscale Mesh).</div>
-          <div class="term-line">Wpisz komendę poniżej lub kliknij jeden ze skrótów, aby wyświetlić dane telemetryczne (np. <span class="term-cmd">help</span>, <span class="term-cmd">whoami</span>, <span class="term-cmd">projects</span>, <span class="term-cmd">hardware</span>, <span class="term-cmd">ski</span>).</div>
-        </div>
-
-        <div class="terminal-input-row">
-          <span class="terminal-prompt">xvyz@jarvis:~$</span>
-          <input type="text" id="termInput" class="terminal-input" placeholder="Wpisz komendę (np. help, stack, hardware, ski) i naciśnij Enter..." autocomplete="off" />
-        </div>
-
-        <div class="quick-cmds">
-          <button class="cmd-chip" data-cmd="whoami">whoami</button>
-          <button class="cmd-chip" data-cmd="projects">projects</button>
-          <button class="cmd-chip" data-cmd="stack">stack</button>
-          <button class="cmd-chip" data-cmd="hardware">hardware</button>
-          <button class="cmd-chip" data-cmd="ski">ski</button>
-          <button class="cmd-chip" data-cmd="clear">clear</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>© 2026 ALEXANDER SALAMON (XVYZ / PANKRASNAL4-DOT). BUILT WITH PRECISION IN ŁÓDŹ, PL.</div>
-      <div>DEPLOYED VIA GITHUB & RENDER CLOUD</div>
+    <div class="nav__actions">
+      <button class="btn btn--secondary" type="button" id="langBtn" aria-label="Zmień język / Switch language">PL / EN</button>
+      <a class="btn btn--primary" href="https://github.com/pankrasnal4-dot" target="_blank" rel="noopener">
+        <span data-i18n="cta_gh">Otwórz GitHub</span>
+        <svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h8"/><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg>
+      </a>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <script>
-    const i18n = {
-      pl: {
-        nav_projects: "Projekty",
-        nav_arch: "Infrastruktura & Hardware",
-        nav_telemetry: "Telemetria",
-        hero_title: "Inżynieria oprogramowania, lokalne systemy AI i architektura sprzętowa.",
-        hero_lead: "Projektuję i wdrażam minimalistyczne aplikacje iOS oraz full-stack, autonomiczne agenty AI (Qwen / Antigravity), niestandardowe urządzenia wbudowane na bazie ESP32 oraz własną infrastrukturę serwerową ZimaOS.",
-        cta_projects: "Eksploruj repozytoria",
-        cta_terminal: "Uruchom konsolę JARVIS",
-        m1_sub: "Lokalne agenty LLM, RAG & Obsidian Second Brain",
-        m2_sub: "HP Thin Client t630, Wake-on-LAN, 1TB CMR SATA",
-        m3_sub: "Custom firmware w C, ekrany dotykowe CYD & zasilanie LiPo",
-        m4_sub: "Kasprowy Wierch (2025/26) · Cel na kolejny sezon",
-        sec_projects_title: "Wybrane projekty inżynieryjne",
-        f_all: "Wszystkie (8)",
-        p_gymmie_desc: "Minimalistyczna, wieloplatformowa aplikacja treningowa (mobile & web) z bezhasłową weryfikacją e-mail, automatycznymi kopiami zapasowymi w chmurze i śledzeniem progresji siłowej.",
-        p_nexus_desc: "Neural Executive & Knowledge Unified System na serwerze ZimaOS. Integracja z Obsidian Second Brain (grafy MOC), potok RAG, synteza mowy TTS, silnik Skill Mastery oraz automatyzacja Google Workspace.",
-        p_smartdeck_desc: "Konfigurowalny Macro Deck dla systemu Windows oraz dedykowany firmware na mikrokontrolery ESP32-2432S028R (CYD) i JC8048, połączony z budową mobilnego kalkulatora zasilanego ogniwem LiPo 3000 mAh (605080).",
-        p_synthesis_desc: "Natywna aplikacja mobilna na platformę iOS napisana w języku Swift. Zaprojektowana zgodnie z estetyką Apple Dark Mode, wykorzystująca wektorową ikonografię SF Symbols oraz responsywną architekturę stanu.",
-        p_turnofi_desc: "Taktyczny timer wyłączania systemu i towarzysz pulpitu dla Windows. 5 dynamicznych motywów, generowane proceduralnie dźwięki, system grywalizacji oraz wbudowany moduł Auto-Updatera.",
-        p_czystotruck_desc: "Platforma webowa w stylistyce Dark Luxury zintegrowana z automatycznym botem zgłoszeniowym na Telegramie, zoptymalizowana pod kątem konwersji dla firmy usługowej w Łodzi.",
-        p_sleepio_desc: "Minimalistyczna aplikacja webowa zaprojektowana w TypeScript, wspierająca planowanie cykli snu, optymalizację regeneracji i higienę rytmu dobowego.",
-        p_buddy_desc: "Eksperymentalne repozytoria obejmujące lekkiego asystenta AI w języku Python (Buddy AI) oraz eksplorację powłoki Liquid Glass UI dla aplikacji iOS bez konieczności jailbreaku.",
-        sec_arch_title: "Architektura systemowa i laboratorium sprzętowe",
-        b1_title: "Węzeł Serwerowy Home Lab",
-        b1_desc: "Prywatna chmura obliczeniowa i serwer usług działający 24/7, zoptymalizowany pod kątem niskiego poboru mocy, zdalnego wybudzania oraz szyfrowanej komunikacji w sieci mesh.",
-        b2_title: "Warsztat Embedded & Hardware Modding",
-        b2_desc: "Projektowanie przenośnych urządzeń mikrokontrolerowych, integracja ogniw litowo-polimerowych oraz modyfikacje sprzętowe elektroniki użytkowej.",
-        b3_title: "Środowisko deweloperskie & Ekosystem AI",
-        b3_desc: "Praca oparta o lokalne przepływy agentowe w katalogu roboczym, łącząca szybkie lokalne modele językowe z natywnym ekosystemem Apple i chmurą obliczeniową.",
-        sec_telemetry_title: "Dyscyplina sportowa i analityka",
-        t1_title: "Narciarstwo Alpejskie — Projekt 140 km/h",
-        t1_desc: "Zjazdowe narciarstwo wysokich prędkości w Tatrach (Kasprowy Wierch, Jurgów Ski). W sezonie 2025/2026 zarejestrowany rekord prędkości wyniósł 112 km/h. Aktualny cel inżynieryjno-kondycyjny to osiągnięcie 140 km/h.",
-        t2_title: "Trening Siłowy & F1",
-        t2_desc: "Systematyczny trening siłowy w systemie split (Well Fitness Łódź) wspierany własną aplikacją Gymmie, pasja do telemetrii Formuły 1, fotografii oraz matematyki rozszerzonej i informatyki (IX LO w Łodzi).",
-        sec_term_title: "Konsola systemowa xvyz@jarvis-node"
-      },
-      en: {
-        nav_projects: "Projects",
-        nav_arch: "Infrastructure & Hardware",
-        nav_telemetry: "Telemetry",
-        hero_title: "Software engineering, local-first AI systems & embedded hardware architecture.",
-        hero_lead: "Designing and building minimalist iOS & full-stack applications, autonomous local AI agents (Qwen / Antigravity), custom ESP32 embedded devices, and self-hosted ZimaOS server infrastructure.",
-        cta_projects: "Explore Repositories",
-        cta_terminal: "Launch JARVIS Console",
-        m1_sub: "Local LLM agents, RAG pipeline & Obsidian Second Brain",
-        m2_sub: "HP Thin Client t630, Wake-on-LAN, 1TB CMR SATA",
-        m3_sub: "Custom C firmware, CYD touch displays & LiPo power",
-        m4_sub: "Kasprowy Wierch (2025/26) · Next season target",
-        sec_projects_title: "Selected Engineering Projects",
-        f_all: "All (8)",
-        p_gymmie_desc: "Minimalist cross-platform fitness & strength tracker (mobile & web) featuring passwordless email verification, automated cloud database backups, and split progression analytics.",
-        p_nexus_desc: "Neural Executive & Knowledge Unified System running on ZimaOS. Integrates an Obsidian Second Brain (MOC cluster graph), RAG pipeline, TTS synthesis, Skill Mastery Engine, and Google Workspace.",
-        p_smartdeck_desc: "Customizable Windows Macro Deck and custom firmware for ESP32-2432S028R (CYD) & JC8048 displays, paired with a portable stealth calculator powered by a 3000 mAh 605080 LiPo battery.",
-        p_synthesis_desc: "Native iOS application engineered in Swift. Built to strict Apple Dark Mode aesthetic standards with crisp SF Symbols iconography and responsive state architecture.",
-        p_turnofi_desc: "Modernist tactical shutdown timer and desktop companion for Windows featuring 5 dynamic themes, procedural audio synthesis, gamification, and an integrated Auto-Updater.",
-        p_czystotruck_desc: "Commercial Dark Luxury web platform integrated with an automated Telegram dispatch bot, engineered for high conversion for a logistics service in Łódź.",
-        p_sleepio_desc: "Minimalist TypeScript web application engineered for sleep cycle architecture, recovery optimization, and circadian rhythm tracking.",
-        p_buddy_desc: "Experimental repositories featuring a lightweight Python AI assistant (Buddy AI) and Liquid Glass UI exploration for iOS without jailbreak.",
-        sec_arch_title: "Systems Architecture & Hardware Lab",
-        b1_title: "Self-Hosted Home Lab Node",
-        b1_desc: "Private cloud and 24/7 service node optimized for low power consumption, remote Wake-on-LAN management, and encrypted Tailscale mesh networking.",
-        b2_title: "Embedded Workbench & Hardware Modding",
-        b2_desc: "Prototyping portable microcontroller devices, custom LiPo battery power delivery systems, and sleeper hardware retrofits.",
-        b3_title: "Development Environment & AI Ecosystem",
-        b3_desc: "Local-first agentic coding workflows combining local open-weight LLMs with native Apple hardware and cloud deployment pipelines.",
-        sec_telemetry_title: "Athletic Discipline & Off-Screen Telemetry",
-        t1_title: "Alpine Skiing — Project 140 km/h",
-        t1_desc: "High-speed alpine skiing in the Tatra Mountains (Kasprowy Wierch, Jurgów Ski). Recorded a personal top speed of 112 km/h in the 2025/2026 season, currently targeting 140 km/h.",
-        t2_title: "Strength Training & Formula 1",
-        t2_desc: "Structured hypertrophy & strength split at Well Fitness Łódź tracked via Gymmie, alongside Formula 1 strategy analysis, photography, and Extended Math & CS at IX LO Łódź.",
-        sec_term_title: "System Console xvyz@jarvis-node"
+<main id="top">
+  <!-- SCREEN 1: HERO (100vh, Split 6/6 with Shader Panel & Live App Frame) -->
+  <section class="hero" data-enter aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="grid hero-split">
+        <div class="hero-copy span-6">
+          <div>
+            <p class="hero-notice" data-i18n="hero_notice">PABIANICKA, GÓRNA · ŁÓDŹ · 14 REPOZYTORIÓW GITHUB</p>
+            <h1 id="hero-h" data-i18n="hero_h1">Aplikacje iOS, lokalne systemy AI i urządzenia ESP32.</h1>
+            <p class="t-lead" data-i18n="hero_lead">
+              Projektuję natywne aplikacje mobilne w Swift, platformy webowe w TypeScript, lokalne potoki LLM (Qwen 3.5 + Antigravity CLI) oraz sprzęt wbudowany zasilany ogniwami LiPo, utrzymywany na własnym serwerze ZimaOS.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn--primary" href="#features">
+                <span data-i18n="hero_btn1">Zobacz zbudowane systemy</span>
+                <svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h8"/><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg>
+              </a>
+              <a class="btn btn--secondary" href="#repositories" data-i18n="hero_btn2">Przeglądaj repozytoria</a>
+            </div>
+
+            <div class="icon-bar" aria-label="Stos technologiczny">
+              <span class="ic-pill">
+                <svg viewBox="0 0 24 24" fill="#F05138" aria-hidden="true"><path d="M21.98 16.58c.08-.23.15-.47.2-.72.76-3.79-.5-8.21-4.01-11.46-3.17-2.94-7.46-3.99-10.97-3.04l-.39.11c2.81-.23 5.99.84 8.44 3.12 2.9 2.69 4.02 6.53 3.23 9.77-.97-.66-2.16-1.45-3.43-2.28-1.35-.88-2.81-1.83-4.27-2.82L4.2 4.67c1.99 2.99 4.71 5.83 7.56 7.82-2.73-1.41-5.83-3.51-8.26-6.19 1.07 2.24 2.86 4.49 5.09 6.36 2.61 2.19 5.66 3.56 8.53 3.92.93.92 1.46 2.02 1.56 3.06.79-.59 1.48-1.34 2.01-2.22.29-.48.51-.99.68-1.52-.43-.28-.92-.68-1.39-1.32z"/></svg>
+                Swift / MLX
+              </span>
+              <span class="ic-pill">
+                <svg viewBox="0 0 24 24" fill="#3178C6" aria-hidden="true"><rect width="24" height="24" rx="3"/><path fill="#fff" d="M13.5 11.2h3.4v1.5h-1.1v6.3h-1.7v-6.3h-1.1v-1.5h.5zm-4.9 5.9c.5.3 1.1.5 1.7.5.5 0 .8-.2.8-.5 0-.4-.3-.5-1-.8-1.2-.4-1.9-1-1.9-2.1 0-1.2 1-2.1 2.5-2.1.7 0 1.4.2 1.9.4l-.4 1.3c-.4-.2-.9-.4-1.5-.4-.5 0-.8.2-.8.5 0 .3.3.5 1.1.8 1.3.5 1.9 1.1 1.9 2.2 0 1.2-.9 2.2-2.6 2.2-.8 0-1.6-.2-2.1-.5l.4-1.5z"/></svg>
+                TypeScript
+              </span>
+              <span class="ic-pill">
+                <svg viewBox="0 0 24 24" fill="#3776AB" aria-hidden="true"><path d="M12 2c-5 0-4.7 2.2-4.7 2.2l.01 2.3h4.8v.7H5.4S2 6.8 2 11.9s3 4.9 3 4.9h1.8v-2.4s-.1-2.9 2.8-2.9h4.8s2.7.04 2.7-2.6V4.6S17.5 2 12 2z"/><path fill="#FFD43B" d="M12.1 22c5 0 4.7-2.2 4.7-2.2l-.01-2.3H12v-.7h6.7s3.4.4 3.4-4.7-3-4.9-3-4.9h-1.8v2.4s.1 2.9-2.8 2.9H9.7S7 12.5 7 15.1v4.3S6.6 22 12.1 22z"/></svg>
+                Python / RAG
+              </span>
+              <span class="ic-pill">
+                <svg viewBox="0 0 24 24" fill="#E7352C" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+                ESP32 C/C++
+              </span>
+            </div>
+          </div>
+
+          <dl class="hero-facts">
+            <div>
+              <dt data-i18n="fact1_dt">Publiczne i prywatne repozytoria</dt>
+              <dd data-m-count="14">14</dd>
+            </div>
+            <div>
+              <dt data-i18n="fact2_dt">Ogniwo kalkulatora ESP32 CYD</dt>
+              <dd>3000 mAh</dd>
+            </div>
+            <div>
+              <dt data-i18n="fact3_dt">Rekord prędkości (Kasprowy)</dt>
+              <dd>112 km/h</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="span-6 start-7">
+          <div class="panel panel--hero" data-fx="grain-gradient">
+            <canvas class="panel__canvas" data-shader="grain"></canvas>
+            <button class="loop-pause" type="button" id="heroLoopBtn" aria-label="Wstrzymaj animację terminala" title="Pause / Play">II</button>
+            <div class="stage--fade-b">
+              <div class="app-frame" id="heroAppFrame">
+                <div class="app-frame__bar">
+                  <span>xvyz@jarvis-node · C:\Users\xvyz\Desktop\code</span>
+                  <span id="loopStepIndicator" style="color:var(--p-accent);">STEP 1/3 · ANTIGRAVITY CLI</span>
+                </div>
+                <div class="app-frame__body" id="heroLoopBody">
+                  <div class="ui-row ui-row--accent">
+                    <span>$ antigravity build --agent qwen3.5:0.8b --target ios</span>
+                    <span class="ui-tag">LOCAL LLM</span>
+                  </div>
+                  <div class="ui-row ui-row--add">
+                    <span>+ [NEXUS-AI] ZimaOS t630 · Obsidian MOC graph synced</span>
+                    <span>1,420 NODES</span>
+                  </div>
+                  <div class="ui-row">
+                    <span>  [GYMMIE] Passwordless email auth + Cloud backup</span>
+                    <span>VERIFIED</span>
+                  </div>
+                  <div class="ui-row">
+                    <span>  [ESP32-2432S028R] Smart Deck HID &amp; LiPo 605080</span>
+                    <span>4.18 V</span>
+                  </div>
+                  <div class="ui-row ui-row--add">
+                    <span>+ [RENDER] xvyz-portfolio.onrender.com</span>
+                    <span>HTTP 200 LIVE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 & 3: 2x2 LIT-PANEL FEATURE CARDS (.g2 = 200vh, cards.md) -->
+  <section class="section g2" id="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="features-h">
+          <span data-i18n="feat_h2">Cztery obszary inżynieryjne.</span>
+          <span class="muted" data-i18n="feat_h2_sub">Każdy projekt działa produkcyjnie w chmurze lub na własnym sprzęcie.</span>
+        </h2>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="grid" style="margin-bottom: var(--s-8);">
+        <a class="card card--open span-6" href="https://github.com/pankrasnal4-dot/gymmiee" target="_blank" rel="noopener">
+          <div>
+            <h3 data-i18n="c1_title">Monitoruj progresję siłową w Gymmie</h3>
+            <p data-i18n="c1_desc">Wieloplatformowa aplikacja treningowa (mobile i web) z bezhasłową weryfikacją e-mail, kopią zapasową w chmurze i śledzeniem planu split z Well Fitness Łódź.</p>
+          </div>
+          <div class="panel">
+            <canvas class="panel__canvas" data-shader="mesh"></canvas>
+            <div class="stage--fade-b">
+              <div class="app-frame">
+                <div class="app-frame__bar">
+                  <span>Gymmie · Sesja Siłowa (Górna, Łódź)</span>
+                  <span style="color:#9ae187;">CLOUD BACKUP: OK</span>
+                </div>
+                <div class="app-frame__body">
+                  <div class="ui-row ui-row--add">
+                    <span>Klatka / Barki / Triceps · Seria 4 zakończona</span>
+                    <span class="ui-tag">+2.5 KG</span>
+                  </div>
+                  <div class="ui-row">
+                    <span>Suplementacja dzienna: Kreatyna 5 g · InBody 270</span>
+                    <span>ATHLETIC</span>
+                  </div>
+                  <div class="ui-row ui-row--accent">
+                    <span>Autoryzacja bezhasłowa (Magic Code)</span>
+                    <span>ACTIVE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="card card--open span-6" href="https://github.com/pankrasnal4-dot/nexus-ai-school-bot" target="_blank" rel="noopener">
+          <div>
+            <h3 data-i18n="c2_title">Orkiestruj bazę wiedzy przez NEXUS AI</h3>
+            <p data-i18n="c2_desc">System na serwerze ZimaOS łączący bota Telegram, graf Obsidian Second Brain (MOC), potok RAG, syntezę mowy TTS oraz integrację z Google Workspace.</p>
+          </div>
+          <div class="panel">
+            <canvas class="panel__canvas" data-shader="grid"></canvas>
+            <div class="stage--fade-b" style="justify-content:center; padding-bottom: 18px;">
+              <!-- Pulsing Node-and-Line Diagram (diagrams.md: lanes-agent) -->
+              <svg viewBox="0 0 520 220" width="100%" height="100%" aria-label="Diagram przepływu NEXUS AI">
+                <defs>
+                  <linearGradient id="edgeGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#93f1f7" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#9ae187" stop-opacity="0.75"/>
+                  </linearGradient>
+                </defs>
+                <path d="M110 110 L210 55 M110 110 L210 110 M110 110 L210 165" stroke="url(#edgeGrad)" stroke-width="1.5" fill="none"/>
+                <path d="M320 55 L410 110 M320 110 L410 110 M320 165 L410 110" stroke="url(#edgeGrad)" stroke-width="1.5" fill="none"/>
+                <circle cx="160" cy="82" r="3.5" fill="#93f1f7">
+                  <animate attributeName="cx" values="110;210" dur="2.6s" repeatCount="indefinite"/>
+                  <animate attributeName="cy" values="110;55" dur="2.6s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="160" cy="110" r="3.5" fill="#93f1f7">
+                  <animate attributeName="cx" values="110;210" dur="2.1s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="365" cy="110" r="3.5" fill="#9ae187">
+                  <animate attributeName="cx" values="320;410" dur="2.4s" repeatCount="indefinite"/>
+                </circle>
+                <rect x="16" y="88" width="94" height="44" fill="#08090b" stroke="rgba(255,255,255,0.28)"/>
+                <text x="63" y="114" fill="#fff" font-family="JetBrains Mono" font-size="11" text-anchor="middle">ZimaOS t630</text>
+
+                <rect x="210" y="37" width="110" height="36" fill="#08090b" stroke="#93f1f7"/>
+                <text x="265" y="59" fill="#93f1f7" font-family="JetBrains Mono" font-size="10.5" text-anchor="middle">Obsidian MOC</text>
+
+                <rect x="210" y="92" width="110" height="36" fill="#08090b" stroke="rgba(255,255,255,0.25)"/>
+                <text x="265" y="114" fill="#fff" font-family="JetBrains Mono" font-size="10.5" text-anchor="middle">Qwen 3.5 RAG</text>
+
+                <rect x="210" y="147" width="110" height="36" fill="#08090b" stroke="rgba(255,255,255,0.25)"/>
+                <text x="265" y="169" fill="#fff" font-family="JetBrains Mono" font-size="10.5" text-anchor="middle">Workspace API</text>
+
+                <rect x="410" y="88" width="94" height="44" fill="#08090b" stroke="#9ae187"/>
+                <text x="457" y="114" fill="#9ae187" font-family="JetBrains Mono" font-size="11" text-anchor="middle">JARVIS Bot</text>
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="grid">
+        <a class="card card--open span-6" href="https://github.com/pankrasnal4-dot/smartdeck" target="_blank" rel="noopener">
+          <div>
+            <h3 data-i18n="c3_title">Programuj mikrokontrolery ESP32-2432S028R</h3>
+            <p data-i18n="c3_desc">Smart Deck Studio Pro w języku C dla Windows oraz konstrukcja przenośnego kalkulatora z ekranem dotykowym 2.8" CYD i baterią LiPo 3000 mAh (605080).</p>
+          </div>
+          <div class="panel">
+            <canvas class="panel__canvas" data-shader="grid"></canvas>
+            <div class="stage--fade-b">
+              <div class="app-frame">
+                <div class="app-frame__bar">
+                  <span>smartdeck_firmware.c · ESP32 CYD &amp; JC8048</span>
+                  <span>GPL-3.0</span>
+                </div>
+                <div class="app-frame__body">
+                  <div class="ui-row">
+                    <span>01  spi_bus_initialize(HSPI_HOST, &amp;buscfg, SPI_DMA_CH_AUTO);</span>
+                    <span class="ui-tag">320x240</span>
+                  </div>
+                  <div class="ui-row ui-row--add">
+                    <span>02  lipo_605080_read_mv(ADC1_CHANNEL_6); // 3000 mAh</span>
+                    <span>JST 1.25</span>
+                  </div>
+                  <div class="ui-row ui-row--accent">
+                    <span>03  casio_fx350es_stealth_bridge_init();</span>
+                    <span>READY</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a class="card card--open span-6" href="https://github.com/pankrasnal4-dot/synthesis-rpg-ios" target="_blank" rel="noopener">
+          <div>
+            <h3 data-i18n="c4_title">Twórz natywne aplikacje iOS oraz desktopowe</h3>
+            <p data-i18n="c4_desc">Synthesis RPG w Swift (Apple Dark Mode, SF Symbols, haptics) oraz taktyczny timer Turnofi dla Windows zbudowany w Electron, React i TypeScript.</p>
+          </div>
+          <div class="panel">
+            <canvas class="panel__canvas" data-shader="grain"></canvas>
+            <div class="stage--fade-b">
+              <div class="app-frame">
+                <div class="app-frame__bar">
+                  <span>SynthesisRPG.swift · iPhone 17 Pro / iPad Pro M2</span>
+                  <span>SWIFTUI + MLX</span>
+                </div>
+                <div class="app-frame__body">
+                  <div class="ui-row ui-row--accent">
+                    <span>.preferredColorScheme(.dark) · .ultraThinMaterial</span>
+                    <span>SF SYMBOLS</span>
+                  </div>
+                  <div class="ui-row ui-row--add">
+                    <span>UIImpactFeedbackGenerator(style: .medium).impactOccurred()</span>
+                    <span>HAPTICS</span>
+                  </div>
+                  <div class="ui-row">
+                    <span>Turnofi Desktop · 5 Themes + Procedural Audio + Auto-Updater</span>
+                    <span>MIT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: DEALT MOMENT 1 — IRIS-OPENS HARDWARE & HOME LAB ARCHITECTURE (100vh) -->
+  <section class="section" id="architecture" aria-labelledby="arch-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="arch-h">
+          <span data-i18n="arch_h2">Własna infrastruktura serwerowa i warsztat sprzętowy.</span>
+          <span class="muted" data-i18n="arch_h2_sub">Pełna kontrola nad stosem od ogniwa LiPo i dysku CMR SATA po lokalny model językowy.</span>
+        </h2>
+      </div>
+
+      <div class="iris-panel" id="irisPanel">
+        <div class="iris-ring" id="irisRing" aria-hidden="true"></div>
+        <div class="grid">
+          <div class="span-6">
+            <ul class="spec-table">
+              <li><span class="k">WĘZEŁ SERWEROWY</span><span class="v">HP Thin Client t630 · ZimaOS / CasaOS</span></li>
+              <li><span class="k">PAMIĘĆ MASOWA</span><span class="v">2.5" 1TB CMR SATA + NVMe System</span></li>
+              <li><span class="k">SIEĆ &amp; DOSTĘP</span><span class="v">Tailscale Mesh VPN + Wake-on-LAN</span></li>
+              <li><span class="k">STACJA ROBOCZA</span><span class="v">Intel Core i5 (11th Gen) · 16 GB RAM · 4 TB</span></li>
+            </ul>
+          </div>
+          <div class="span-6 start-7">
+            <ul class="spec-table">
+              <li><span class="k">PLATFORMA EMBEDDED</span><span class="v">ESP32-2432S028R (2.8" CYD) &amp; JC8048</span></li>
+              <li><span class="k">ZASILANIE MOBILNE</span><span class="v">Ogniwo LiPo 3000 mAh (605080) + Micro JST</span></li>
+              <li><span class="k">MODYFIKACJE SPRZĘTU</span><span class="v">Casio fx-350ES PLUS 2nd Ed (Dark Polarizer)</span></li>
+              <li><span class="k">URZĄDZENIA TESTOWE</span><span class="v">iPhone 17 Pro · iPad Pro 12.9" (M2)</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: PEEK-LIST REPOSITORY EXPLORER (100vh, starter.html peek-list) -->
+  <section class="section" id="repositories" aria-labelledby="repos-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="repos-h">
+          <span data-i18n="repos_h2">Katalog repozytoriów GitHub.</span>
+          <span class="muted" data-i18n="repos_h2_sub">Wybierz projekt z listy, aby podejrzeć jego specyfikację i otworzyć repozytorium.</span>
+        </h2>
+      </div>
+
+      <div class="grid">
+        <ul class="rows span-6" id="peekList">
+          <li class="is-active" tabindex="0" data-repo="gymmiee" data-title="pankrasnal4-dot/gymmiee" data-lang="JavaScript · Full-Stack" data-url="https://github.com/pankrasnal4-dot/gymmiee" data-line1="Bezhasłowa weryfikacja e-mail i automatyczny backup w chmurze." data-line2="Stworzony pod trening siłowy split (Well Fitness Łódź).">
+            <span class="rows__name">Gymmie (gymmiee)</span>
+            <span class="rows__value">JavaScript · 2026</span>
+            <p>Minimalistyczny tracker treningowy mobile i web z synchronizacją chmurową.</p>
+          </li>
+          <li tabindex="0" data-repo="synthesis" data-title="pankrasnal4-dot/synthesis-rpg-ios" data-lang="Swift · Native iOS" data-url="https://github.com/pankrasnal4-dot/synthesis-rpg-ios" data-line1="Natywna architektura SwiftUI z ikonografią SF Symbols i Dark Mode." data-line2="Projektowany w przepływie Antigravity CLI pod iPhone 17 Pro.">
+            <span class="rows__name">Synthesis RPG iOS</span>
+            <span class="rows__value">Swift · iOS</span>
+            <p>Natywna aplikacja mobilna iOS w estetyce Apple Dark Mode i `.ultraThinMaterial`.</p>
+          </li>
+          <li tabindex="0" data-repo="nexus" data-title="pankrasnal4-dot/nexus-ai-school-bot" data-lang="Python · ZimaOS · MIT" data-url="https://github.com/pankrasnal4-dot/nexus-ai-school-bot" data-line1="ZimaOS Telegram Bot połączony z bazą Obsidian Second Brain (MOC)." data-line2="Silnik Skill Mastery (5x5 źródeł/h), potok RAG, TTS i Google Workspace.">
+            <span class="rows__name">NEXUS AI &amp; JarvisLocalAi</span>
+            <span class="rows__value">Python · RAG</span>
+            <p>Neural Executive &amp; Knowledge Unified System działający na własnym serwerze.</p>
+          </li>
+          <li tabindex="0" data-repo="smartdeck" data-title="pankrasnal4-dot/smartdeck" data-lang="C · ESP32 · GPL-3.0" data-url="https://github.com/pankrasnal4-dot/smartdeck" data-line1="Konfigurowalny Macro Deck dla Windows obsługujący płytki ESP32 CYD i JC8048." data-line2="Komunikacja niskopoziomowa w C i integracja z kalkulatorem LiPo 3000 mAh.">
+            <span class="rows__name">Smart Deck Studio Pro</span>
+            <span class="rows__value">C · ESP32</span>
+            <p>Firmware i oprogramowanie sterujące dla ekranów dotykowych ESP32.</p>
+          </li>
+          <li tabindex="0" data-repo="turnofi" data-title="pankrasnal4-dot/turnofi" data-lang="TypeScript · Electron · MIT" data-url="https://github.com/pankrasnal4-dot/turnofi" data-line1="5 dynamicznych motywów, proceduralny syntezator dźwięku i grywalizacja." data-line2="Zbudowany w Electron, React, TypeScript, Tailwind CSS i Framer Motion.">
+            <span class="rows__name">Turnofi Desktop</span>
+            <span class="rows__value">TypeScript · Electron</span>
+            <p>Taktyczny timer wyłączania systemu Windows z wbudowanym Auto-Updaterem.</p>
+          </li>
+          <li tabindex="0" data-repo="czystotruck" data-title="pankrasnal4-dot/czystotruck-website" data-lang="HTML5 · Telegram Bot · Render" data-url="https://czystotruck-website.onrender.com" data-line1="Komercyjne wdrożenie dla firmy z Łodzi z automatycznym botem zgłoszeniowym." data-line2="Hostowane na chmurze Render (czystotruck-website.onrender.com).">
+            <span class="rows__name">CzystoTruck &amp; Sleepio</span>
+            <span class="rows__value">Live · Render</span>
+            <p>Wdrożenie komercyjne z botem Telegram oraz aplikacja webowa Sleepio w TS.</p>
+          </li>
+        </ul>
+
+        <div class="span-6 start-7">
+          <div class="panel" style="--p-h: 420px;">
+            <canvas class="panel__canvas" data-shader="mesh"></canvas>
+            <div class="stage--fade-b">
+              <div class="app-frame">
+                <div class="app-frame__bar">
+                  <span id="peekTitle">pankrasnal4-dot/gymmiee</span>
+                  <span id="peekLang" style="color:var(--p-accent);">JavaScript · Full-Stack</span>
+                </div>
+                <div class="app-frame__body">
+                  <div class="ui-row ui-row--accent">
+                    <span id="peekLine1">Bezhasłowa weryfikacja e-mail i automatyczny backup w chmurze.</span>
+                  </div>
+                  <div class="ui-row">
+                    <span id="peekLine2">Stworzony pod trening siłowy split (Well Fitness Łódź).</span>
+                  </div>
+                  <div class="ui-row ui-row--add" style="margin-top: 8px;">
+                    <span>Status repozytorium: Aktywne · 0 otwartych issues</span>
+                    <a id="peekLink" href="https://github.com/pankrasnal4-dot/gymmiee" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:600;">OTWÓRZ REPO →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: DEALT MOMENT 2 — WORD-HIGHLIGHT STATEMENT & TELEMETRY (100vh) -->
+  <section class="section" id="statement" aria-labelledby="state-h">
+    <div class="wrap statement-box">
+      <div class="section-head" style="margin-bottom: var(--s-5);">
+        <h2 id="state-h" data-i18n="state_h2">Dyscyplina techniczna i sportowa poza ekranem.</h2>
+      </div>
+      <p class="statement-copy" id="wordHighlight">
+        <span class="w is-lit">Od</span>
+        <span class="w is-lit">lokalnych</span>
+        <span class="w is-acc">modeli</span>
+        <span class="w is-acc">LLM</span>
+        <span class="w is-lit">i</span>
+        <span class="w is-lit">ogniw</span>
+        <span class="w is-lit">LiPo</span>
+        <span class="w">lutowanych</span>
+        <span class="w">przy</span>
+        <span class="w">biurku</span>
+        <span class="w">w</span>
+        <span class="w">Łodzi,</span>
+        <span class="w">po</span>
+        <span class="w is-acc">112 km/h</span>
+        <span class="w">zarejestrowane</span>
+        <span class="w">na</span>
+        <span class="w">Kasprowym</span>
+        <span class="w">Wierchu</span>
+        <span class="w">w</span>
+        <span class="w">drodze</span>
+        <span class="w">do</span>
+        <span class="w is-acc">140 km/h.</span>
+      </p>
+      <div class="grid" style="border-top: 1px solid var(--p-hairline); padding-top: var(--s-5);">
+        <div class="span-4">
+          <p class="hero-notice">NARCIARSTWO ALPEJSKIE</p>
+          <p class="muted" style="font-size:14px;">Kasprowy Wierch &amp; Jurgów Ski · Rekord 2025/26: 112 km/h · Cel: 140 km/h</p>
+        </div>
+        <div class="span-4">
+          <p class="hero-notice">TRENING SIŁOWY &amp; F1</p>
+          <p class="muted" style="font-size:14px;">Well Fitness (Górna, Łódź) · Progresja rejestrowana w Gymmie · Analiza strategii F1</p>
+        </div>
+        <div class="span-4">
+          <p class="hero-notice">EDUKACJA STEM</p>
+          <p class="muted" style="font-size:14px;">IX LO im. Jarosława Dąbrowskiego w Łodzi · Profil Mat-Inf-Ang + Język hiszpański</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- SCREEN 7: FOOTER CLOSING (100vh, close--word) -->
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div>
+          <h2 id="close-h" data-i18n="close_h2">Sprawdź kod źródłowy na GitHubie.</h2>
+          <p class="t-lead" style="margin-bottom:0;" data-i18n="close_lead">Pabianicka, Górna · Łódź · Konto GitHub: @pankrasnal4-dot</p>
+        </div>
+        <a class="btn btn--primary btn--xl" href="https://github.com/pankrasnal4-dot" target="_blank" rel="noopener">
+          <span data-i18n="cta_gh2">Otwórz GitHub</span>
+          <svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 6h8"/><path d="M4.5 2.5 8 6l-3.5 3.5"/></svg>
+        </a>
+      </div>
+      <p class="close__word" aria-hidden="true">XVYZ</p>
+    </div>
+
+    <div class="closing__links">
+      <div class="grid" style="margin-bottom: var(--s-6);">
+        <div class="span-4">
+          <a class="nav__logo" href="#top">
+            <span class="mark" data-mark="ring" aria-hidden="true"></span>
+            <span>Alexander Salamon</span>
+          </a>
+          <p class="muted" style="font-size:14px; margin-top:8px;">Inżynieria oprogramowania, lokalne agenty AI i sprzęt embedded w Łodzi.</p>
+        </div>
+        <div class="span-2 footer__col">
+          <h3>Nawigacja</h3>
+          <ul>
+            <li><a href="#features">Systemy i UI</a></li>
+            <li><a href="#architecture">Infrastruktura</a></li>
+            <li><a href="#repositories">Repozytoria</a></li>
+            <li><a href="#statement">Telemetria</a></li>
+          </ul>
+        </div>
+        <div class="span-3 footer__col">
+          <h3>Flaga Projektowa</h3>
+          <ul>
+            <li><a href="https://github.com/pankrasnal4-dot/gymmiee" target="_blank" rel="noopener">Gymmie Tracker</a></li>
+            <li><a href="https://github.com/pankrasnal4-dot/nexus-ai-school-bot" target="_blank" rel="noopener">NEXUS AI (ZimaOS)</a></li>
+            <li><a href="https://github.com/pankrasnal4-dot/smartdeck" target="_blank" rel="noopener">Smart Deck ESP32</a></li>
+            <li><a href="https://github.com/pankrasnal4-dot/synthesis-rpg-ios" target="_blank" rel="noopener">Synthesis RPG iOS</a></li>
+          </ul>
+        </div>
+        <div class="span-3 footer__col">
+          <h3>Wdrożenia Chmurowe</h3>
+          <ul>
+            <li><a href="https://xvyz-portfolio.onrender.com">xvyz-portfolio.onrender.com</a></li>
+            <li><a href="https://czystotruck-website.onrender.com" target="_blank" rel="noopener">czystotruck-website.onrender.com</a></li>
+            <li><a href="https://github.com/pankrasnal4-dot/turnofi" target="_blank" rel="noopener">Turnofi Desktop</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <span>&copy; 2026 Alexander Salamon (xvyz) &nbsp;·&nbsp; <a href="privacy.html">Prywatność</a> &nbsp;·&nbsp; <a href="terms.html">Warunki</a></span>
+        <span>Built with tasteskill 2.5.1 · Deployed on Render</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 1. Procedural Canvas Shader Grounds inside .panel (tech allowance per effects-usage.md)
+  const canvases = Array.from(document.querySelectorAll('.panel__canvas'));
+  let animPaused = false;
+  let t = 0;
+
+  function drawCanvases() {
+    if (!animPaused) t += 0.012;
+    canvases.forEach((canvas, idx) => {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width / 2));
+      const h = Math.max(1, Math.floor(rect.height / 2));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
       }
-    };
+      const ctx = canvas.getContext('2d');
+      const mode = canvas.dataset.shader || 'grain';
 
-    let currentLang = "pl";
-    const langToggle = document.getElementById("langToggle");
-    const langLabel = document.getElementById("langLabel");
-
-    langToggle.addEventListener("click", () => {
-      currentLang = currentLang === "pl" ? "en" : "pl";
-      langLabel.textContent = currentLang === "pl" ? "PL / EN" : "EN / PL";
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (i18n[currentLang][key]) {
-          el.textContent = i18n[currentLang][key];
-        }
-      });
-    });
-
-    const filterBtns = document.querySelectorAll(".filter-btn");
-    const projectCards = document.querySelectorAll(".project-card");
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const filter = btn.getAttribute("data-filter");
-        projectCards.forEach(card => {
-          if (filter === "all" || card.getAttribute("data-category") === filter) {
-            card.style.display = "flex";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
-
-    const termOutput = document.getElementById("termOutput");
-    const termInput = document.getElementById("termInput");
-    const cmdChips = document.querySelectorAll(".cmd-chip");
-
-    const commands = {
-      help: () => "Dostępne komendy: <span class='term-cmd'>whoami</span>, <span class='term-cmd'>projects</span>, <span class='term-cmd'>stack</span>, <span class='term-cmd'>hardware</span>, <span class='term-cmd'>ski</span>, <span class='term-cmd'>github</span>, <span class='term-cmd'>clear</span>",
-      whoami: () => "Alexander Salamon (xvyz / @pankrasnal4-dot) — 18-letni twórca oprogramowania, architekt lokalnych systemów AI i konstruktor sprzętu embedded z Łodzi (IX LO, profil Mat-Inf-Ang).",
-      projects: () => "Aktywne projekty: [1] Gymmie (Full-Stack Fitness Tracker) · [2] NEXUS AI / Jarvis (ZimaOS + Obsidian RAG) · [3] Smart Deck Studio Pro & ESP32 Stealth Calc · [4] Synthesis RPG iOS (Swift) · [5] Turnofi (Electron/TS) · [6] Sleepio · [7] CzystoTruck.",
-      stack: () => "Stack: Swift (iOS), TypeScript / JavaScript (React, Electron, Node), Python (AI Agents, RAG, Automation), C/C++ (ESP32), ZimaOS, Tailscale, GitHub, Render.",
-      hardware: () => "Lab: Serwer HP Thin Client t630 (ZimaOS, 1TB CMR SATA, WoL) · ESP32-2432S028R (CYD) + LiPo 3000mAh 605080 · Modyfikacje Casio fx-350ES PLUS · iPhone 17 Pro & iPad Pro M2.",
-      ski: () => "Telemetria narciarska: Vmax = 112 km/h (Kasprowy Wierch, sezon 2025/2026). Cel główny: 140 km/h.",
-      github: () => "Profil GitHub: <a href='https://github.com/pankrasnal4-dot' target='_blank' style='color:#3b82f6;text-decoration:underline;'>https://github.com/pankrasnal4-dot</a>"
-    };
-
-    function runCommand(raw) {
-      const cmd = raw.trim().toLowerCase();
-      if (!cmd) return;
-      if (cmd === "clear") {
-        termOutput.innerHTML = "";
-        return;
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      if (mode === 'grid') {
+        grad.addColorStop(0, '#132226');
+        grad.addColorStop(0.55, '#0c1317');
+        grad.addColorStop(1, '#07090b');
+      } else if (mode === 'mesh') {
+        grad.addColorStop(0, '#1c2419');
+        grad.addColorStop(0.5, '#10181b');
+        grad.addColorStop(1, '#080a0c');
+      } else {
+        grad.addColorStop(0, '#16282d');
+        grad.addColorStop(0.5, '#0e1518');
+        grad.addColorStop(1, '#07080a');
       }
-      const promptLine = document.createElement("div");
-      promptLine.className = "term-line";
-      promptLine.innerHTML = `<span class="term-accent">xvyz@jarvis:~$</span> ${cmd}`;
-      termOutput.appendChild(promptLine);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
 
-      const resLine = document.createElement("div");
-      resLine.className = "term-line";
-      resLine.innerHTML = commands[cmd]
-        ? commands[cmd]()
-        : `Nieznana komenda: "${cmd}". Wpisz <span class="term-cmd">help</span>, aby zobaczyć listę dostępnych poleceń.`;
-      termOutput.appendChild(resLine);
-      termOutput.scrollTop = termOutput.scrollHeight;
+      // Soft moving light field
+      const cx = w * (0.35 + 0.25 * Math.cos(t + idx));
+      const cy = h * (0.30 + 0.20 * Math.sin(t * 0.8 + idx));
+      const rad = ctx.createRadialGradient(cx, cy, 4, cx, cy, Math.max(w, h) * 0.65);
+      rad.addColorStop(0, idx % 2 === 0 ? 'rgba(147, 241, 247, 0.22)' : 'rgba(154, 225, 135, 0.20)');
+      rad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = rad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle technical grid lines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      const step = 28;
+      for (let x = 0; x < w; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+    });
+    requestAnimationFrame(drawCanvases);
+  }
+  requestAnimationFrame(drawCanvases);
+
+  // 2. Hero UI Loop (cycles every 3.2s with Pause control per House Rule 5)
+  const loopStates = [
+    {
+      step: 'STEP 1/3 · ANTIGRAVITY CLI',
+      rows: [
+        ['$ antigravity build --agent qwen3.5:0.8b --target ios', 'LOCAL LLM', 'ui-row--accent'],
+        ['+ [NEXUS-AI] ZimaOS t630 · Obsidian MOC graph synced', '1,420 NODES', 'ui-row--add'],
+        ['  [GYMMIE] Passwordless email auth + Cloud backup', 'VERIFIED', ''],
+        ['  [ESP32-2432S028R] Smart Deck HID & LiPo 605080', '4.18 V', ''],
+        ['+ [RENDER] xvyz-portfolio.onrender.com', 'HTTP 200 LIVE', 'ui-row--add']
+      ]
+    },
+    {
+      step: 'STEP 2/3 · ZIMAOS & TAILSCALE MESH',
+      rows: [
+        ['$ tailscale status --json | jq .Self.Online', 'MESH VPN', 'ui-row--accent'],
+        ['+ [HP-T630] 1TB CMR SATA array healthy · Wake-on-LAN armed', 'ONLINE', 'ui-row--add'],
+        ['  [NEXUS-BOT] Skill Mastery Engine (5x5 sources/h)', 'RUNNING', ''],
+        ['  [SYNTHESIS-IOS] Swift + SF Symbols build succeeded', '0 ERRORS', 'ui-row--add'],
+        ['  [TURNOFI] Auto-Updater release channel synced', 'v1.4 MIT', '']
+      ]
+    },
+    {
+      step: 'STEP 3/3 · HARDWARE & TELEMETRY',
+      rows: [
+        ['$ idf.py -p COM4 flash monitor --baud 115200', 'ESP32-CYD', 'ui-row--accent'],
+        ['+ [LIPO-605080] 3000 mAh cell balanced via Micro JST', '98% SOC', 'ui-row--add'],
+        ['  [CASIO-MOD] fx-350ES PLUS dark polarizer inversion', 'TESTED', ''],
+        ['+ [ALPINE-VMAX] Kasprowy Wierch telemetry record', '112 KM/H', 'ui-row--add'],
+        ['  [NEXT-TARGET] High-speed downhill preparation', '140 KM/H', '']
+      ]
+    }
+  ];
+
+  let loopIdx = 0;
+  const heroLoopBody = document.getElementById('heroLoopBody');
+  const loopStepIndicator = document.getElementById('loopStepIndicator');
+  const heroLoopBtn = document.getElementById('heroLoopBtn');
+
+  setInterval(() => {
+    if (animPaused) return;
+    loopIdx = (loopIdx + 1) % loopStates.length;
+    const st = loopStates[loopIdx];
+    loopStepIndicator.textContent = st.step;
+    heroLoopBody.innerHTML = st.rows.map(([left, right, cls]) =>
+      `<div class="ui-row ${cls}"><span>${left}</span><span class="ui-tag">${right}</span></div>`
+    ).join('');
+  }, 3200);
+
+  heroLoopBtn.addEventListener('click', () => {
+    animPaused = !animPaused;
+    heroLoopBtn.textContent = animPaused ? '▶' : 'II';
+  });
+
+  // 3. Peek-List Interactive Repository Switcher
+  const peekItems = Array.from(document.querySelectorAll('#peekList li'));
+  const peekTitle = document.getElementById('peekTitle');
+  const peekLang = document.getElementById('peekLang');
+  const peekLine1 = document.getElementById('peekLine1');
+  const peekLine2 = document.getElementById('peekLine2');
+  const peekLink = document.getElementById('peekLink');
+
+  function activatePeek(li) {
+    peekItems.forEach(item => item.classList.remove('is-active'));
+    li.classList.add('is-active');
+    peekTitle.textContent = li.dataset.title;
+    peekLang.textContent = li.dataset.lang;
+    peekLine1.textContent = li.dataset.line1;
+    peekLine2.textContent = li.dataset.line2;
+    peekLink.href = li.dataset.url;
+  }
+
+  peekItems.forEach(li => {
+    li.addEventListener('mouseenter', () => activatePeek(li));
+    li.addEventListener('focus', () => activatePeek(li));
+    li.addEventListener('click', () => window.open(li.dataset.url, '_blank', 'noopener'));
+  });
+
+  // 4. Dealt Moments on Scroll: Iris-Opens + Word-Highlight
+  const irisSection = document.getElementById('architecture');
+  const irisRing = document.getElementById('irisRing');
+  const stateSection = document.getElementById('statement');
+  const words = Array.from(document.querySelectorAll('#wordHighlight .w'));
+
+  function onScrollMoments() {
+    const vh = window.innerHeight;
+
+    // Iris-opens
+    if (irisSection && irisRing) {
+      const r = irisSection.getBoundingClientRect();
+      const prog = Math.min(1, Math.max(0.15, (vh - r.top) / (vh * 0.95)));
+      const size = Math.round(260 + prog * 1100);
+      irisRing.style.setProperty('--iris-size', size + 'px');
     }
 
-    termInput.addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        runCommand(termInput.value);
-        termInput.value = "";
-      }
-    });
-
-    cmdChips.forEach(chip => {
-      chip.addEventListener("click", () => {
-        runCommand(chip.getAttribute("data-cmd"));
+    // Word-highlight
+    if (stateSection && words.length) {
+      const r2 = stateSection.getBoundingClientRect();
+      const prog2 = Math.min(1, Math.max(0, (vh * 0.78 - r2.top) / (r2.height * 0.72)));
+      const litCount = Math.floor(prog2 * words.length);
+      words.forEach((w, i) => {
+        if (i <= litCount || i < 7) w.classList.add('is-lit');
+        else w.classList.remove('is-lit');
       });
+    }
+  }
+  window.addEventListener('scroll', onScrollMoments, { passive: true });
+  onScrollMoments();
+
+  // 5. Bilingual PL / EN Switcher
+  const dict = {
+    pl: {
+      nav_sys: 'Systemy i UI',
+      nav_lab: 'Infrastruktura i Hardware',
+      nav_repos: 'Repozytoria',
+      nav_telemetry: 'Telemetria',
+      nav_contact: 'Kontakt',
+      cta_gh: 'Otwórz GitHub',
+      cta_gh2: 'Otwórz GitHub',
+      hero_notice: 'PABIANICKA, GÓRNA · ŁÓDŹ · 14 REPOZYTORIÓW GITHUB',
+      hero_h1: 'Aplikacje iOS, lokalne systemy AI i urządzenia ESP32.',
+      hero_lead: 'Projektuję natywne aplikacje mobilne w Swift, platformy webowe w TypeScript, lokalne potoki LLM (Qwen 3.5 + Antigravity CLI) oraz sprzęt wbudowany zasilany ogniwami LiPo, utrzymywany na własnym serwerze ZimaOS.',
+      hero_btn1: 'Zobacz zbudowane systemy',
+      hero_btn2: 'Przeglądaj repozytoria',
+      fact1_dt: 'Publiczne i prywatne repozytoria',
+      fact2_dt: 'Ogniwo kalkulatora ESP32 CYD',
+      fact3_dt: 'Rekord prędkości (Kasprowy)',
+      feat_h2: 'Cztery obszary inżynieryjne.',
+      feat_h2_sub: 'Każdy projekt działa produkcyjnie w chmurze lub na własnym sprzęcie.',
+      c1_title: 'Monitoruj progresję siłową w Gymmie',
+      c1_desc: 'Wieloplatformowa aplikacja treningowa (mobile i web) z bezhasłową weryfikacją e-mail, kopią zapasową w chmurze i śledzeniem planu split z Well Fitness Łódź.',
+      c2_title: 'Orkiestruj bazę wiedzy przez NEXUS AI',
+      c2_desc: 'System na serwerze ZimaOS łączący bota Telegram, graf Obsidian Second Brain (MOC), potok RAG, syntezę mowy TTS oraz integrację z Google Workspace.',
+      c3_title: 'Programuj mikrokontrolery ESP32-2432S028R',
+      c3_desc: 'Smart Deck Studio Pro w języku C dla Windows oraz konstrukcja przenośnego kalkulatora z ekranem dotykowym 2.8" CYD i baterią LiPo 3000 mAh (605080).',
+      c4_title: 'Twórz natywne aplikacje iOS oraz desktopowe',
+      c4_desc: 'Synthesis RPG w Swift (Apple Dark Mode, SF Symbols, haptics) oraz taktyczny timer Turnofi dla Windows zbudowany w Electron, React i TypeScript.',
+      arch_h2: 'Własna infrastruktura serwerowa i warsztat sprzętowy.',
+      arch_h2_sub: 'Pełna kontrola nad stosem od ogniwa LiPo i dysku CMR SATA po lokalny model językowy.',
+      repos_h2: 'Katalog repozytoriów GitHub.',
+      repos_h2_sub: 'Wybierz projekt z listy, aby podejrzeć jego specyfikację i otworzyć repozytorium.',
+      state_h2: 'Dyscyplina techniczna i sportowa poza ekranem.',
+      close_h2: 'Sprawdź kod źródłowy na GitHubie.',
+      close_lead: 'Pabianicka, Górna · Łódź · Konto GitHub: @pankrasnal4-dot'
+    },
+    en: {
+      nav_sys: 'Systems & UI',
+      nav_lab: 'Infrastructure & Hardware',
+      nav_repos: 'Repositories',
+      nav_telemetry: 'Telemetry',
+      nav_contact: 'Contact',
+      cta_gh: 'Open GitHub',
+      cta_gh2: 'Open GitHub',
+      hero_notice: 'PABIANICKA, GÓRNA · ŁÓDŹ · 14 GITHUB REPOSITORIES',
+      hero_h1: 'iOS applications, local AI systems and ESP32 hardware.',
+      hero_lead: 'Engineering native Swift mobile apps, TypeScript web platforms, local-first LLM pipelines (Qwen 3.5 + Antigravity CLI), and custom LiPo-powered ESP32 devices backed by a self-hosted ZimaOS server.',
+      hero_btn1: 'Explore deployed systems',
+      hero_btn2: 'Browse repositories',
+      fact1_dt: 'Public & private repositories',
+      fact2_dt: 'ESP32 CYD LiPo battery cell',
+      fact3_dt: 'Alpine Vmax record (Tatras)',
+      feat_h2: 'Four engineering pillars.',
+      feat_h2_sub: 'Every system runs in production cloud or on self-hosted hardware.',
+      c1_title: 'Track strength progression in Gymmie',
+      c1_desc: 'Cross-platform fitness application (mobile & web) with passwordless email verification, automated cloud database backups, and split routine tracking.',
+      c2_title: 'Orchestrate local knowledge with NEXUS AI',
+      c2_desc: 'ZimaOS server system uniting a Telegram bot, Obsidian Second Brain (MOC graph), RAG pipeline, TTS synthesis, and Google Workspace automation.',
+      c3_title: 'Program ESP32-2432S028R microcontrollers',
+      c3_desc: 'Smart Deck Studio Pro in C for Windows and a portable stealth calculator built on a 2.8" CYD touch display with a 3000 mAh 605080 LiPo cell.',
+      c4_title: 'Build native iOS and desktop software',
+      c4_desc: 'Synthesis RPG in Swift (Apple Dark Mode, SF Symbols, haptics) and the Turnofi tactical desktop timer built with Electron, React, and TypeScript.',
+      arch_h2: 'Self-hosted server infrastructure and hardware lab.',
+      arch_h2_sub: 'Full ownership of the stack from the LiPo cell and CMR SATA drive to the local LLM.',
+      repos_h2: 'GitHub repository index.',
+      repos_h2_sub: 'Select any repository row to inspect its architecture and open the source code.',
+      state_h2: 'Technical and athletic discipline off-screen.',
+      close_h2: 'Inspect the source code on GitHub.',
+      close_lead: 'Pabianicka, Górna · Łódź, Poland · GitHub: @pankrasnal4-dot'
+    }
+  };
+
+  let curLang = 'pl';
+  document.getElementById('langBtn').addEventListener('click', () => {
+    curLang = curLang === 'pl' ? 'en' : 'pl';
+    document.documentElement.lang = curLang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (dict[curLang][k]) el.textContent = dict[curLang][k];
     });
-  </script>
+  });
+</script>
 </body>
 </html>
